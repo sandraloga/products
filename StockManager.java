@@ -69,7 +69,16 @@ public class StockManager
     
     public int numberInStock(int id)
     {
-      return 0;
+        int numeroStock = 0;
+      for (Product producto : stock)
+      {
+        if (id==producto.getID())
+        {
+            numeroStock=producto.getQuantity();
+        }
+      
+      }
+      return numeroStock = 0;
     }
 
     /**
