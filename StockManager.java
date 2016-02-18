@@ -46,7 +46,17 @@ public class StockManager
      */
     public Product findProduct(int id)
     {
-        return null;
+       Product identificador = null;
+       for (Product producto : stock)
+       {
+          
+            if (id==producto.getID())
+            {
+              identificador = producto;
+            }
+           
+        }
+       return identificador;
     }
     
     /**
@@ -56,9 +66,10 @@ public class StockManager
      * @param id The ID of the product.
      * @return The quantity of the given product in stock.
      */
+    
     public int numberInStock(int id)
     {
-        return 0;
+      return 0;
     }
 
     /**
