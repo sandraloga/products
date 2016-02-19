@@ -23,10 +23,28 @@ public class StockManager
     /**
      * Add a product to the list.
      * @param item The item to be added.
+     * Modifica el método addProduct para que no permita añadir un producto
+     * que tenga un id de otro producto ya existente
      */
     public void addProduct(Product item)
     {
-        stock.add(item);
+        int index = 0;
+        boolean encontrado = false;  //partimos de que no lo encuentra
+         while(!encontrado || index < stock.size())
+         {
+             if (item.getID() != stock.get(index).getID() )
+             {
+                 stock.add(item);   
+             }
+             else
+             {
+                 encontrado = true;
+             }
+             index++;
+         }
+                
+       
+       
     }
     
     /**
