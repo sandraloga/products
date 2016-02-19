@@ -37,13 +37,14 @@ public class StockManager
      */
     public void delivery(int id, int amount)
     {
-        for (Product producto : stock)
-        {
-         if (id==producto.getID())
-         {
-             producto.increaseQuantity(amount);
-         }
-        }
+      Product producto = findProduct(id);
+      if(producto != null){
+         producto.increaseQuantity(amount);
+      }
+      else{
+        System.out.println("El id indicado no pertenece a ningun producto");
+      }
+    
     }
     
     /**
@@ -53,17 +54,17 @@ public class StockManager
      */
     public Product findProduct(int id)
     {
-       Product identificador = null;
-       for (Product producto : stock)
-       {
-          
-            if (id==producto.getID())
-            {
-              identificador = producto;
-            }
-           
+       Product producto = null;
+      int index = 0;
+      boolean encontrado = false;
+      while(!encontrado && index < stock.size()) {
+        if (stock.get(index).getID() == id) {
+            producto = stock.get(index);
+          encontrado = true;
         }
-       return identificador;
+        index++;
+      }
+       return producto;
     }
     
     /**
@@ -76,17 +77,15 @@ public class StockManager
     
     public int numberInStock(int id)
     {
-        int numeroStock = 0;
-      for (Product producto : stock)
-      {
-        if (id==producto.getID())
-        {
-            numeroStock=producto.getQuantity();
-        }
-      
+       int cantidad = 0;
+      Product producto = findProduct(id); 
+      if (producto != null) {
+         cantidad = producto.getQuantity();
       }
-      return numeroStock = 0;
+      return cantidad;
     }
+
+    
 
     /**
      * Print details of all the products.
@@ -97,5 +96,22 @@ public class StockManager
         {
                 System.out.println (producto.toString());
         }
+    }
+    /**
+     * A partir del código terminado de la actividad 0704, implementa un nuevo método llamado 
+     * underGivenNumberInStock en la clase StockManager que imprima los detalles de todos los
+     * productos cuyo stock está por debajo de un determinado número que será pasado como parámetro al método.
+     */
+    public void underGivenNumberInStock(int numero)
+    {
+        Product numeroStock = null; 
+        for (Product producto : stock)
+        {
+            if (producto.getQuantity() < numero)
+            {
+                System.out.println(producto);
+            }
+        }
+    
     }
 }
